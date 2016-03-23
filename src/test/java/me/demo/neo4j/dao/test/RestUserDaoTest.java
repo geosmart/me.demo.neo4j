@@ -16,10 +16,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+/**
+ * Neo4j Rest服务测试
+ * 
+ * @author geosmart
+ * 
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:neo4j.rest.cfg.xml"})
-// @ContextConfiguration(locations = {"classpath:neo4j.embed.cfg.xml"})
-public class UserDaoTest {
+public class RestUserDaoTest {
 
   private static final int USER_COUNT = 4;
 
@@ -94,7 +99,7 @@ public class UserDaoTest {
 
   @After
   public void tearDown() {
-	repo.deleteAll();
+	// repo.deleteAll();
   }
 
   private static void out(Object o) {

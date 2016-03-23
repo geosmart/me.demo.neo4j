@@ -16,14 +16,15 @@
 	</developers>
 
 	<description>neo4j.springdata demo</description>
- 
+
 	<properties>
 		<!-- framework -->
-		<jdk.version>1.8</jdk.version>
+		<jdk.version>1.7</jdk.version>
 
 		<!-- db -->
 		<spring.version>4.1.9.RELEASE</spring.version>
 		<spring-data-neo4j.version>3.4.2.RELEASE</spring-data-neo4j.version>
+		<neo4j.version>2.3.2</neo4j.version>
 
 		<!-- test -->
 		<junit.version>4.11</junit.version>
@@ -33,6 +34,11 @@
 	</properties>
 
 	<repositories>
+		<repository>
+			<id>central maven repository</id>
+			<url>http://central.maven.org/maven2/</url>
+			<layout>default</layout>
+		</repository>
 		<repository>
 			<id>spring-releases</id>
 			<name>Spring Releases</name>
@@ -46,19 +52,50 @@
 	</repositories>
 	<dependencies>
 		<!-- neo4j -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.springframework.data</groupId> -->
-		<!-- <artifactId>spring-data-neo4j</artifactId> -->
-		<!-- <version>${spring-data-neo4j.version}</version> -->
-		<!-- </dependency> -->
+		<dependency>
+			<groupId>org.neo4j</groupId>
+			<artifactId>neo4j</artifactId>
+			<version>${neo4j.version}</version>
+		</dependency>
 
-		<!-- neo4j -->
+		<dependency>
+			<groupId>org.neo4j.app</groupId>
+			<artifactId>neo4j-server</artifactId>
+			<classifier>static-web</classifier>
+			<version>${neo4j.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-neo4j-rest</artifactId>
 			<version>${spring-data-neo4j.version}</version>
 		</dependency>
-		
+
+		<!-- neo4j test-->
+		<dependency>
+			<groupId>org.neo4j</groupId>
+			<artifactId>neo4j-kernel</artifactId>
+			<version>${neo4j.version}</version>
+			<type>test-jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>org.neo4j.app</groupId>
+			<artifactId>neo4j-server</artifactId>
+			<version>${neo4j.version}</version>
+			<type>test-jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>org.neo4j.app</groupId>
+			<artifactId>neo4j-server</artifactId>
+			<version>${neo4j.version}</version>
+			<classifier>static-web</classifier>
+		</dependency>
+
+		<!-- neo4j test <dependency> <groupId>org.neo4j</groupId> <artifactId>neo4j-ogm</artifactId> 
+			<version>${neo4j-ogm.version}</version> <type>test-jar</type> </dependency> -->
+
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>

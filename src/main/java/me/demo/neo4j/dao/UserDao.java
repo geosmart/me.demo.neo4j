@@ -17,7 +17,7 @@ public interface UserDao extends GraphRepository<User> {
 
   User findByLogin(String login);
 
-  @Query("START root=node:User(login = 'root') MATCH root-[:knows]->friends RETURN friends")
+  @Query("MATCH root-[:knows]->friends RETURN friends")
   List<User> findFriendsOfRoot();
 
 }
