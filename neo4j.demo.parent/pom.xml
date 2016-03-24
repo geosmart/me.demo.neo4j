@@ -1,0 +1,93 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>me.geosmart.demo</groupId>
+	<artifactId>neo4j-demo-parent</artifactId>
+	<version>0.0.1</version>
+	<packaging>pom</packaging>
+
+	<name>neo4j-demo-parent</name>
+
+	<developers>
+		<developer>
+			<name>geosmart</name>
+			<email>geosmart@hotmail.com</email>
+			<organizationUrl>https://github.com/geosmart</organizationUrl>
+		</developer>
+	</developers>
+
+	<properties>
+		<!-- framework -->
+		<jdk.version>1.7</jdk.version>
+		<spring.version>3.1.2.RELEASE</spring.version>
+		<!-- db -->
+		<neo4j.version>2.3.2</neo4j.version>
+		<!-- log -->
+		<slf4j.version>1.6.6</slf4j.version>
+		<log4j.version>1.2.17</log4j.version>
+		<!-- test -->
+		<junit.version>4.8.2</junit.version>
+		<!-- encode -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+	<repositories>
+		<repository>
+			<id>central maven repository</id>
+			<url>http://central.maven.org/maven2/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+
+	<dependencyManagement>
+
+		<dependencies>
+			<!-- spring -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<!-- neo4j -->
+			<dependency>
+				<groupId>org.neo4j</groupId>
+				<artifactId>neo4j</artifactId>
+				<version>${neo4j.version}</version>
+			</dependency>
+
+			<!-- neo4j test -->
+			<dependency>
+				<groupId>org.neo4j</groupId>
+				<artifactId>neo4j-kernel</artifactId>
+				<version>${neo4j.version}</version>
+				<type>test-jar</type>
+			</dependency>
+			<!-- log -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+
+			<!--test -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+</project> 
+
+
+  
