@@ -12,52 +12,73 @@ import java.util.Properties;
 
 public class Neo4jConfig {
   private static IDBAccess dbAccess;
+  /**
+   * database type
+   */
+  private DBType dbType;
+
+
   private String dbName;
   private String dbPath;
 
   private String userId = null;
   private String password = null;
 
+  public void initDbAccess() {
+	switch (dbType) {
+	  case IN_MEMORY:
+		initMemoryDB();
+		break;
+	  case EMBEDDED:
+		initEmbedDB();
+		break;
+	  case REMOTE:
+		initRemoteDB();
+		break;
+	  default:
+		break;
+	}
+  }
+
+  /**
+   * init memorry database
+   * 
+   * @param dbPath
+   */
+  protected void initMemoryDB() {
+	// properties for embedded access
+	Properties props = new Properties();
+	dbAccess = DBAccessFactory.createDBAccess(DBType.IN_MEMORY, props);
+  }
 
   /**
    * init embedded database
    * 
    * @param dbPath
    */
-  @SuppressWarnings("unused")
-  private void initEmbedDB() {
+  protected void initEmbedDB() {
 	// properties for embedded access
 	Properties props = new Properties();
-	dbPath = dbPath == null ? System.getProperty("user.dir") + "/db/01" : System.getProperty("user.dir") + dbPath;
+	dbPath = dbPath == null ? System.getProperty("user.dir") + "/bin/db/01" : dbPath;
 	System.out.println(dbPath);
 	props.setProperty(DBProperties.DATABASE_DIR, dbPath);
-	dbAccess = DBAccessFactory.createDBAccess(DBType.IN_MEMORY, props);
+	dbAccess = DBAccessFactory.createDBAccess(DBType.EMBEDDED, props);
   }
 
   /**
+   * init remote database
+   * 
    * @param dbPath
    */
-  private void init() {
-	// a domain needs a unique name within a graph database
-	// dbName = "PEOPLE-DOMAIN";
-
-	// properties for remote access and for embedded access
-	// (not needed for in memory access)
-	Properties props = new Properties();
-
+  protected void initRemoteDB() {
 	// properties for embedded access
-	dbPath = dbPath == null ? System.getProperty("user.dir") + "/db/01" : dbPath;
-	props.setProperty(DBProperties.DATABASE_DIR, dbPath);
-	// no properties needed for in memory access
-
-	// properties for remote access
-	props.setProperty(DBProperties.SERVER_ROOT_URI, "http://localhost:7474");
+	Properties props = new Properties();
+	/** connect to remote database via REST (SERVER_ROOT_URI property is needed) */
+	props.setProperty(DBProperties.SERVER_ROOT_URI, "http://127.0.0.1:7474");
 	if (userId != null && password != null) {
 	  dbAccess = DBAccessFactory.createDBAccess(DBType.REMOTE, props, userId, password);
 	} else {
-	  // dbAccess = DBAccessFactory.createDBAccess(DBType.REMOTE, props);
-	  // dbAccess = DBAccessFactory.createDBAccess(DBType.EMBEDDED, props);
-	  dbAccess = DBAccessFactory.createDBAccess(DBType.IN_MEMORY, props);
+	  dbAccess = DBAccessFactory.createDBAccess(DBType.REMOTE, props);
 	}
   }
 
@@ -116,5 +137,13 @@ public class Neo4jConfig {
 
   public IDBAccess getDbAccess() {
 	return dbAccess;
+  }
+
+  public DBType getDbType() {
+	return dbType;
+  }
+
+  public void setDbType(DBType dbType) {
+	this.dbType = dbType;
   }
 }

@@ -1,6 +1,5 @@
 package demo.neo4j.jcypher.entity;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,21 +10,17 @@ import java.util.Set;
  * 
  */
 public class User {
-  Long id;
-  private String login;
+  private String id;
 
-  private String fullName;
-
-  private Date lastLogin;
+  private String name;
 
   Set<User> friends;
 
   public User() {}
 
-  public User(String login, String fullName) {
-	this.login = login;
-	this.fullName = fullName;
-	this.lastLogin = new Date();
+  public User(String id, String name) {
+	this.id = id;
+	this.name = name;
 	this.friends = new HashSet<User>();
   }
 
@@ -33,35 +28,12 @@ public class User {
 	friends.add(user);
   }
 
-  public String getLogin() {
-	return login;
-  }
 
-  public void setLogin(String login) {
-	this.login = login;
-  }
-
-  public String getFullName() {
-	return fullName;
-  }
-
-  public void setFullName(String fullName) {
-	this.fullName = fullName;
-  }
-
-  public Date getLastLogin() {
-	return lastLogin;
-  }
-
-  public void setLastLogin(Date lastLogin) {
-	this.lastLogin = lastLogin;
-  }
-
-  public long getId() {
+  public String getId() {
 	return id;
   }
 
-  public void setId(long id) {
+  public void setId(String id) {
 	this.id = id;
   }
 
@@ -73,8 +45,13 @@ public class User {
 	this.friends = friends;
   }
 
-  public void setId(Long id) {
-	this.id = id;
+
+  public String getName() {
+	return name;
+  }
+
+  public void setName(String name) {
+	this.name = name;
   }
 
 

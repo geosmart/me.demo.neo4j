@@ -5,17 +5,21 @@ import java.util.List;
 import demo.neo4j.jcypher.entity.User;
 
 /**
- * Neo4j dao
+ * User Dao
  * 
  * @author geosmart
- *
+ * 
  */
 public interface IUserDao {
+
+  void saveUser(List<User> users);
+
+  void saveUser(User user);
 
   User findByLogin(String login);
 
   List<User> findFriendsOfRoot();
 
-  void createMovieDatabaseByGraphModel();
+
 
 }

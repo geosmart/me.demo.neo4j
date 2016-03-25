@@ -14,19 +14,19 @@
  * limitations under the License.
  ************************************************************************/
 
-package iot.jcypher.samples.domain.people;
-
-import iot.jcypher.samples.domain.people.model.Address;
-import iot.jcypher.samples.domain.people.model.Area;
-import iot.jcypher.samples.domain.people.model.AreaType;
-import iot.jcypher.samples.domain.people.model.Company;
-import iot.jcypher.samples.domain.people.model.EContact;
-import iot.jcypher.samples.domain.people.model.EContact.EContactType;
-import iot.jcypher.samples.domain.people.model.Gender;
-import iot.jcypher.samples.domain.people.model.Person;
+package demo.neo4j.jcypher.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import demo.neo4j.jcypher.entity.people.Address;
+import demo.neo4j.jcypher.entity.people.Area;
+import demo.neo4j.jcypher.entity.people.AreaType;
+import demo.neo4j.jcypher.entity.people.Company;
+import demo.neo4j.jcypher.entity.people.EContact;
+import demo.neo4j.jcypher.entity.people.EContact.EContactType;
+import demo.neo4j.jcypher.entity.people.Gender;
+import demo.neo4j.jcypher.entity.people.Person;
 
 public class Population {
 
@@ -57,9 +57,11 @@ public class Population {
 		List<Object> domainObjects = new ArrayList<Object>();
 		
 		createPlaces();
+
 		createSmithFamily(domainObjects);
 		createBerghammers(domainObjects);
 		createMore(domainObjects);
+
 		createCompanies(domainObjects);
 		
 		return domainObjects;
@@ -79,24 +81,31 @@ public class Population {
 	
 	private void createPlaces() {
 		earth = new Area(null, "Earth", AreaType.PLANET);
+
 		northAmerica = new Area(null, "North America", AreaType.CONTINENT);
 		northAmerica.setPartOf(earth);
+
 		usa = new Area("1", "USA", AreaType.COUNTRY);
 		usa.setPartOf(northAmerica);
+
 		california = new Area(null, "California", AreaType.STATE);
 		california.setPartOf(usa);
+
 		sanFrancisco = new Area(null, "San Francisco", AreaType.CITY);
 		sanFrancisco.setPartOf(california);
+
 		europe = new Area(null, "Europe", AreaType.CONTINENT);
 		europe.setPartOf(earth);
 		germany = new Area("2", "Germany", AreaType.COUNTRY);
 		germany.setPartOf(europe);
 		munich = new Area(null, "Munich", AreaType.CITY);
 		munich.setPartOf(germany);
+
 		newYork = new Area(null, "New York", AreaType.STATE);
 		newYork.setPartOf(usa);
 		newYorkCity = new Area(null, "New York City", AreaType.CITY);
 		newYorkCity.setPartOf(newYork);
+
 		austria = new Area(null, "Austria", AreaType.COUNTRY);
 		austria.setPartOf(europe);
 		vienna = new Area("1", "Vienna", AreaType.CITY);
@@ -112,22 +121,18 @@ public class Population {
 		smith_address.setArea(sanFrancisco);
 		Address smith_address_2 = new Address("Schweden Platz", 32);
 		smith_address_2.setArea(vienna_01);
-
 		EContact jsmith_eContact = new EContact(EContactType.EMAIL, "j.smith@email.smith");
 		
 		Person john_smith = new Person("John", "Smith", Gender.MALE, "brown");
 		john_smith.getPointsOfContact().add(smith_address);
 		john_smith.getPointsOfContact().add(smith_address_2);
 		john_smith.getPointsOfContact().add(jsmith_eContact);
-
 		Person caroline_smith = new Person("Caroline", "Smith", Gender.FEMALE, "green");
 		caroline_smith.getPointsOfContact().add(smith_address);
-
 		Person angie_smith = new Person("Angelina", "Smith", Gender.FEMALE, "blue");
 		angie_smith.getPointsOfContact().add(smith_address);
 		angie_smith.setMother(caroline_smith);
 		angie_smith.setFather(john_smith);
-
 		Person jery_smith = new Person("Jeremy", "Smith", Gender.MALE, "brown");
 		jery_smith.getPointsOfContact().add(smith_address);
 		jery_smith.setMother(caroline_smith);
