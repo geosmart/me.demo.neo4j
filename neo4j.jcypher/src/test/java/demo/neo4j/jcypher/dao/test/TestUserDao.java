@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import demo.neo4j.jcypher.config.Neo4jConfig;
 import demo.neo4j.jcypher.dao.IUserDao;
-import demo.neo4j.jcypher.entity.User;
+import demo.neo4j.jcypher.domain.User;
 
 /**
  * UserDao TestCase
@@ -34,14 +34,15 @@ public class TestUserDao {
 
   @Before
   public void setup() {
-	initUsers();
+	System.out.println("......setup......");
   }
 
+  @Test
   public void initUsers() {
 	User root = new User("root", "Superuser");
 	List<User> users = new ArrayList<User>();
 	for (int i = 0; i < USER_COUNT; i++) {
-	  users.add(new User(String.format("user%02d", i), "User" + i));
+	  users.add(new User(String.format("user %s", i), "guest" + i));
 	}
 	for (User user : users) {
 	  root.knows(user);
@@ -51,15 +52,22 @@ public class TestUserDao {
   }
 
   @Test
-  public void test_findByLogin() {
-	System.out.println("--");
-	// User result = userDao.findByLogin("root");
-	// System.out.println(result.getId());
+  public void test_findUserFriends() {
+	List<User> users = userDao.findUserFriends("root");
+	for (User user : users) {
+	  System.out.println(user.getId());
+	}
+  }
+
+
+  @Test
+  public void clearDataBase() {
+	userDao.clearDataBase();
   }
 
   @After
   public void teardown() {
-	System.out.println("tear down");
+	System.out.println("......teardown.......");
   }
 
 }

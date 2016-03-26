@@ -20,12 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-import demo.neo4j.jcypher.entity.people.Address;
-import demo.neo4j.jcypher.entity.people.Area;
-import demo.neo4j.jcypher.entity.people.Company;
-import demo.neo4j.jcypher.entity.people.EContact;
-import demo.neo4j.jcypher.entity.people.Person;
-import demo.neo4j.jcypher.entity.people.Subject;
+import demo.neo4j.jcypher.domain.people.Address;
+import demo.neo4j.jcypher.domain.people.Area;
+import demo.neo4j.jcypher.domain.people.Company;
+import demo.neo4j.jcypher.domain.people.EContact;
+import demo.neo4j.jcypher.domain.people.Person;
+import demo.neo4j.jcypher.domain.people.Subject;
 
 public class CompareUtil {
 

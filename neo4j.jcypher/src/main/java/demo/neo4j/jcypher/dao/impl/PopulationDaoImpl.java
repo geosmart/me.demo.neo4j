@@ -4,6 +4,9 @@ import iot.jcypher.database.IDBAccess;
 import iot.jcypher.domain.DomainInformation;
 import iot.jcypher.domain.DomainInformation.DomainObjectType;
 import iot.jcypher.domain.IDomainAccess;
+import iot.jcypher.domainquery.DomainQuery;
+import iot.jcypher.domainquery.DomainQueryResult;
+import iot.jcypher.domainquery.api.DomainObjectMatch;
 import iot.jcypher.query.result.JcError;
 import iot.jcypher.query.result.JcResultException;
 
@@ -11,7 +14,8 @@ import java.util.List;
 
 import demo.neo4j.jcypher.config.Neo4jConfig;
 import demo.neo4j.jcypher.dao.IPopulationDao;
-import demo.neo4j.jcypher.entity.Population;
+import demo.neo4j.jcypher.domain.Population;
+import demo.neo4j.jcypher.domain.people.Person;
 import demo.neo4j.jcypher.util.Util;
 
 /**
@@ -52,11 +56,46 @@ public class PopulationDaoImpl implements IPopulationDao {
 	// Store the graph of domain objects in the graph database.
 	// Starting with the root objects, the entire object graph is stored in the graph database.
 	IDomainAccess domainAccess = neo4jConfig.createDomainAccess();
+
 	errors = domainAccess.store(createdDomainObjects);
 	if (errors.size() > 0) {
 	  Util.printErrors(errors);
 	  throw new JcResultException(errors);
 	}
+  }
+
+  /**
+   * demonstrates how to store and retrieve domain objects.
+   */
+  @Override
+  public void clearDatabase() {
+	IDBAccess dbAccess = neo4jConfig.getDbAccess();
+	dbAccess.clearDatabase();
+
+  }
+
+  /**
+   * Sorting Result Sets + Pagination
+   */
+  @Override
+  public List<Person> paginationQuery(String key, Object value) {
+	IDomainAccess domainAccess = neo4jConfig.createDomainAccess();
+	// create a DomainQuery object
+	DomainQuery q = domainAccess.createQuery();
+	// create DomainObjectMatches
+	DomainObjectMatch<Person> personsMatch = q.createMatch(Person.class);
+	// Specify Pagination (offset + count)
+	personsMatch.setPage(1, 5);
+	// where filter
+	q.WHERE(personsMatch.atttribute(key)).EQUALS(value);
+	// First: All persons are sorted by their last name (ascending)
+	q.ORDER(personsMatch).BY("lastName");
+	// Second: Having the same last name, persons are sorted by their first name (descending)
+	q.ORDER(personsMatch).BY("firstName").DESCENDING();
+
+	DomainQueryResult result = q.execute();
+	List<Person> sortedPersons = result.resultOf(personsMatch);
+	return sortedPersons;
   }
 
   /**

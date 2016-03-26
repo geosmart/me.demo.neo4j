@@ -14,7 +14,7 @@
  * limitations under the License.
  ************************************************************************/
 
-package demo.neo4j.jcypher.entity.people;
+package demo.neo4j.jcypher.domain.people;
 
 public class EContact implements PointOfContact {
 

@@ -6,6 +6,7 @@ import iot.jcypher.database.DBType;
 import iot.jcypher.database.IDBAccess;
 import iot.jcypher.domain.DomainAccessFactory;
 import iot.jcypher.domain.IDomainAccess;
+import iot.jcypher.domain.IDomainAccess.DomainLabelUse;
 import iot.jcypher.domain.IDomainAccessFactory;
 
 import java.util.Properties;
@@ -89,7 +90,8 @@ public class Neo4jConfig {
    * @return a new IDomainAccess
    */
   public IDomainAccess createDomainAccess() {
-	return DomainAccessFactory.createDomainAccess(dbAccess, dbName);
+	DomainLabelUse domainLabel = DomainLabelUse.AUTO;
+	return DomainAccessFactory.createDomainAccess(dbAccess, dbName, domainLabel);
   }
 
   /**

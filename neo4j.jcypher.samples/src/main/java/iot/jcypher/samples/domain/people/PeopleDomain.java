@@ -894,7 +894,7 @@ public class PeopleDomain {
 		
 		List<JcError> errors;
 		IDomainAccess domainAccess = Config.createDomainAccess();
-		
+
 		// A utility class for creating a sample population.
 		Population domainPopulator = new Population();
 		

@@ -14,8 +14,19 @@
  * limitations under the License.
  ************************************************************************/
 
-package demo.neo4j.jcypher.entity.people;
+package demo.neo4j.jcypher.domain.people;
 
-public interface PointOfContact {
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Subject {
+	
+	private List<PointOfContact> pointsOfContact;
+
+	public List<PointOfContact> getPointsOfContact() {
+		if (this.pointsOfContact == null)
+			this.pointsOfContact = new ArrayList<PointOfContact>();
+		return pointsOfContact;
+	}
 
 }

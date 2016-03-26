@@ -14,17 +14,8 @@
  * limitations under the License.
  ************************************************************************/
 
-package demo.neo4j.jcypher.entity.people;
+package demo.neo4j.jcypher.domain.people;
 
-public class Company extends Subject {
+public interface PointOfContact {
 
-	private String name;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 }

@@ -14,33 +14,8 @@
  * limitations under the License.
  ************************************************************************/
 
-package demo.neo4j.jcypher.entity.people;
+package demo.neo4j.jcypher.domain.people;
 
-public class Address implements PointOfContact {
-
-	private String street;
-	private int number;
-	private Area area;
-	
-	public Address() {
-		super();
-	}
-	public Address(String street, int number) {
-		super();
-		this.street = street;
-		this.number = number;
-	}
-	public String getStreet() {
-		return street;
-	}
-	public int getNumber() {
-		return number;
-	}
-	public Area getArea() {
-		return area;
-	}
-	public void setArea(Area area) {
-		this.area = area;
-	}
-	
+public enum AreaType {
+	DISTRICT, URBAN_DISTRICT, CITY, VILLAGE, STATE, COUNTRY, CONTINENT, PLANET
 }

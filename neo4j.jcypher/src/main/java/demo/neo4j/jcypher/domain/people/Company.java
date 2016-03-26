@@ -14,19 +14,17 @@
  * limitations under the License.
  ************************************************************************/
 
-package demo.neo4j.jcypher.entity.people;
+package demo.neo4j.jcypher.domain.people;
 
-import java.util.ArrayList;
-import java.util.List;
+public class Company extends Subject {
 
-public abstract class Subject {
-	
-	private List<PointOfContact> pointsOfContact;
+	private String name;
 
-	public List<PointOfContact> getPointsOfContact() {
-		if (this.pointsOfContact == null)
-			this.pointsOfContact = new ArrayList<PointOfContact>();
-		return pointsOfContact;
+	public String getName() {
+		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
 }

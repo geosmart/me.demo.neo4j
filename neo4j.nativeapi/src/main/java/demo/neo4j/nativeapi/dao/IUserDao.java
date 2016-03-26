@@ -1,8 +1,8 @@
-package demo.neo4j.jcypher.dao;
+package demo.neo4j.nativeapi.dao;
 
 import java.util.List;
 
-import demo.neo4j.jcypher.domain.User;
+import demo.neo4j.nativeapi.domain.User;
 
 /**
  * User Dao

@@ -14,8 +14,44 @@
  * limitations under the License.
  ************************************************************************/
 
-package demo.neo4j.jcypher.entity.people;
+package demo.neo4j.jcypher.domain.people;
 
-public enum Gender {
-	FEMALE, MALE
+public class Area {
+
+	private String areaCode;
+	private String name;
+	private AreaType areaType;
+	private Area partOf;
+	
+	public Area() {
+		super();
+	}
+
+	public Area(String areaCode, String name, AreaType areaType) {
+		super();
+		this.areaCode = areaCode;
+		this.name = name;
+		this.areaType = areaType;
+	}
+
+	public String getAreaCode() {
+		return areaCode;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public AreaType getAreaType() {
+		return areaType;
+	}
+
+	public Area getPartOf() {
+		return partOf;
+	}
+
+	public void setPartOf(Area partOf) {
+		this.partOf = partOf;
+	}
+	
 }

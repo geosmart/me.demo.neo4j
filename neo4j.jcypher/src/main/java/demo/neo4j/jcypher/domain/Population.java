@@ -14,19 +14,19 @@
  * limitations under the License.
  ************************************************************************/
 
-package demo.neo4j.jcypher.entity;
+package demo.neo4j.jcypher.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import demo.neo4j.jcypher.entity.people.Address;
-import demo.neo4j.jcypher.entity.people.Area;
-import demo.neo4j.jcypher.entity.people.AreaType;
-import demo.neo4j.jcypher.entity.people.Company;
-import demo.neo4j.jcypher.entity.people.EContact;
-import demo.neo4j.jcypher.entity.people.EContact.EContactType;
-import demo.neo4j.jcypher.entity.people.Gender;
-import demo.neo4j.jcypher.entity.people.Person;
+import demo.neo4j.jcypher.domain.people.Address;
+import demo.neo4j.jcypher.domain.people.Area;
+import demo.neo4j.jcypher.domain.people.AreaType;
+import demo.neo4j.jcypher.domain.people.Company;
+import demo.neo4j.jcypher.domain.people.EContact;
+import demo.neo4j.jcypher.domain.people.Gender;
+import demo.neo4j.jcypher.domain.people.Person;
+import demo.neo4j.jcypher.domain.people.EContact.EContactType;
 
 public class Population {
 

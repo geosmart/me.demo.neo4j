@@ -1,7 +1,7 @@
-package demo.neo4j.jcypher.entity;
+package demo.neo4j.jcypher.domain;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User entity
@@ -14,20 +14,19 @@ public class User {
 
   private String name;
 
-  Set<User> friends;
+  List<User> friends;
 
   public User() {}
 
   public User(String id, String name) {
 	this.id = id;
 	this.name = name;
-	this.friends = new HashSet<User>();
+	this.friends = new ArrayList<User>();
   }
 
   public void knows(User user) {
 	friends.add(user);
   }
-
 
   public String getId() {
 	return id;
@@ -37,14 +36,13 @@ public class User {
 	this.id = id;
   }
 
-  public Set<User> getFriends() {
+  public List<User> getFriends() {
 	return friends;
   }
 
-  public void setFriends(Set<User> friends) {
+  public void setFriends(List<User> friends) {
 	this.friends = friends;
   }
-
 
   public String getName() {
 	return name;

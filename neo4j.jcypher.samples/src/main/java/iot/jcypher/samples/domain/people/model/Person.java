@@ -22,6 +22,7 @@ public class Person extends Subject {
 	private String lastName;
 	private Gender gender;
 	private String eyeColor;
+
 	private Person father;
 	private Person mother;
 	
