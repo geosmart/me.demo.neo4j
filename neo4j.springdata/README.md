@@ -1,6 +1,6 @@
 SpringData for Neo4j Demo
 ---
-[Spring Data Neo4j参考文档](http://www.javabeat.net/spring-data-neo4j/) 
+[Spring Data Neo4j参考文档](http://www.javabeat.net/spring-data-neo4j/)
 
 * User Domain Mapping TO Graph
 ```java
@@ -59,5 +59,5 @@ public interface UserDao extends GraphRepository<User> {
 	<context:annotation-config />  
 </beans>
 ```
- 
-![GraphDemo效果图](GraphDemo.png)
+
+![GraphDemo效果图](bin/img/GraphDemo.png)

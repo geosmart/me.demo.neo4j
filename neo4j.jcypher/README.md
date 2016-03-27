@@ -5,4 +5,4 @@ JCypher Neo4j Demo
 [JCypher WIKI](https://github.com/Wolfgang-Schuetzelhofer/jcypher/wiki)
 
 
-![GraphDemo效果图](userGraphDemo.png)
+![GraphDemo效果图](bin/img/userGraphDemo.png)
