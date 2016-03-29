@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>neo4j-demo-jcypher</artifactId>
-	<version>1.2</version>
+	<version>1.0</version>
 	<name>neo4j-demo-springdata</name>
 	<packaging>jar</packaging>
 	<parent>
@@ -19,7 +19,7 @@
 
 		<!-- db -->
 		<spring.version>4.1.9.RELEASE</spring.version>
-		<spring-data-neo4j.version>3.4.2.RELEASE</spring-data-neo4j.version>
+		<spring-data-neo4j.version>3.4.4.RELEASE</spring-data-neo4j.version>
 		<neo4j.version>2.3.2</neo4j.version>
 
 		<!-- encode -->
@@ -38,24 +38,25 @@
 			<name>Spring Releases</name>
 			<url>https://repo.spring.io/libs-release</url>
 		</repository>
-		<repository>
-			<id>neo4j</id>
-			<name>Neo4j</name>
-			<url>http://m2.neo4j.org/</url>
-		</repository>
 	</repositories>
+
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-neo4j</artifactId>
+			<version>${spring-data-neo4j.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-neo4j-rest</artifactId>
 			<version>${spring-data-neo4j.version}</version>
-		</dependency>
+		</dependency> 
 
 		<!-- neo4j test -->
 		<dependency>
 			<groupId>org.neo4j</groupId>
-			<artifactId>neo4j-kernel</artifactId> 
+			<artifactId>neo4j-kernel</artifactId>
 			<type>test-jar</type>
 		</dependency>
 
@@ -65,9 +66,6 @@
 			<version>${neo4j.version}</version>
 			<classifier>static-web</classifier>
 		</dependency>
-
-		<!-- neo4j test <dependency> <groupId>org.neo4j</groupId> <artifactId>neo4j-ogm</artifactId> 
-			<version>${neo4j-ogm.version}</version> <type>test-jar</type> </dependency> -->
 
 		<dependency>
 			<groupId>cglib</groupId>
@@ -81,16 +79,30 @@
 			<version>1.1.0.Final</version>
 		</dependency>
 
+		<!-- Jackson -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+
 		<!--test -->
 		<dependency>
 			<groupId>junit</groupId>
-			<artifactId>junit</artifactId> 
+			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId> 
+			<artifactId>spring-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

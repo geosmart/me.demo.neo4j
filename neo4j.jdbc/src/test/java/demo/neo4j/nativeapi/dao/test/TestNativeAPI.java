@@ -33,6 +33,7 @@ import demo.neo4j.nativeapi.domain.UserRelationShipType;
 @ContextConfiguration(locations = {"classpath:dao.cfg.xml"})
 public class TestNativeAPI {
   private static final int USER_COUNT = 4;
+
   String graphDbPath = "F://Dev//neo4j//data//graph.db";
   GraphDatabaseFactory dbFactory;
   GraphDatabaseService graphDb;
@@ -45,7 +46,6 @@ public class TestNativeAPI {
 	graphDb = dbFactory.newEmbeddedDatabase(new File(graphDbPath));
 	userLabel = DynamicLabel.label("User");
   }
-
 
   @Test
   public void initUsers() {
@@ -62,7 +62,7 @@ public class TestNativeAPI {
 		userNodes.add(userNode);
 	  }
 	  for (Node userNode : userNodes) {
-		Relationship relationship = rootNode.createRelationshipTo(userNode, UserRelationShipType.KNOWS);
+		Relationship relationship = rootNode.createRelationshipTo(userNode, UserRelationShipType.knows);
 		relationship.setProperty("info", "i know you");
 		relationship.setProperty("id", RandomUtils.nextInt(0, 5));
 	  }
@@ -75,7 +75,7 @@ public class TestNativeAPI {
   public void test_findUserFriends() {
 	try (Transaction tx = graphDb.beginTx()) {
 	  Node rootNode = graphDb.findNode(userLabel, "id", "rootNode");
-	  Iterable<Relationship> result = rootNode.getRelationships(UserRelationShipType.KNOWS);
+	  Iterable<Relationship> result = rootNode.getRelationships(UserRelationShipType.knows);
 	  for (Relationship relationship : result) {
 		Node user = relationship.getEndNode();
 		System.out.println(user.getProperty("id"));

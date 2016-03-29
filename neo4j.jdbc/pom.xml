@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>neo4j-demo-jcypher</artifactId>
+	<artifactId>neo4j-demo-nativeapi</artifactId>
 	<version>1.2</version>
-	<name>neo4j-demo-jcypher</name>
+	<name>neo4j-demo-jdbc</name>
 	<packaging>jar</packaging>
 	<parent>
 		<groupId>me.geosmart.demo</groupId>
@@ -11,18 +11,17 @@
 		<version>0.0.1</version>
 	</parent>
 
-	<description>neo4j-demo-jcypher</description>
+	<description>neo4j-demo-jdbc</description>
 
 	<properties>
 		<!-- framework -->
 		<jdk.version>1.7</jdk.version>
-		<spring.version>3.1.2.RELEASE</spring.version> 
 
 		<!-- db -->
+		<spring.version>4.1.9.RELEASE</spring.version>
+		<spring-data-neo4j.version>3.4.2.RELEASE</spring-data-neo4j.version>
 		<neo4j.version>2.3.2</neo4j.version>
-		<morphia.version>0.108</morphia.version>
-		<jongo.version>1.1</jongo.version> 
- 
+
 		<!-- test -->
 		<junit.version>4.11</junit.version>
 		<!-- encode -->
@@ -30,12 +29,21 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 
-	<repositories>
+	<repositories>  
+		<repository>
+			<id>sonatype-nexus-staging</id>
+			<name>Nexus Release Repository</name>
+			<url>http://repo1.maven.org/maven2/</url>
+			<layout>default</layout>
+		</repository>
 		<repository>
 			<id>central maven repository</id>
 			<url>http://central.maven.org/maven2/</url>
-			<layout>default</layout>
 		</repository>
+        <repository>
+            <id>Neo4j releases</id>
+            <url>https://m2.neo4j.org/content/repositories/releases</url> 
+        </repository> 
 	</repositories>
 	<dependencies>
 		<!-- spring -->
@@ -44,24 +52,23 @@
 			<artifactId>spring-context</artifactId>
 		</dependency>
 
-		<!-- jongo -->
+		<!-- jdbc -->
 		<dependency>
-			<groupId>org.jongo</groupId>
-			<artifactId>jongo</artifactId>
-			<version>${jongo.version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 
-		<!-- mongodb-orm -->
-		<dependency>
-			<groupId>org.mongodb.morphia</groupId>
-			<artifactId>morphia</artifactId>
-			<version>${morphia.version}</version>
-		</dependency>
-		
 		<!-- neo4j -->
 		<dependency>
 			<groupId>org.neo4j</groupId>
 			<artifactId>neo4j</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.neo4j</groupId>
+			<artifactId>neo4j-jdbc</artifactId>
+            <version>2.3.2</version>
 		</dependency>
 
 		<!-- neo4j test -->
@@ -77,42 +84,6 @@
 			<type>test-jar</type>
 		</dependency>
 
-		<!-- jcypher -->
-		<dependency>
-			<groupId>net.iot-solutions.graphdb</groupId>
-			<artifactId>jcypher</artifactId>
-			<version>3.3.0</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.neo4j</groupId>
-					<artifactId>neo4j-kernel</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.neo4j</groupId>
-					<artifactId>neo4j-io</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<!-- Jackson -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId> 
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId> 
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId> 
-		</dependency>
-
-		<!-- log -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-		</dependency>
 
 		<!--test -->
 		<dependency>

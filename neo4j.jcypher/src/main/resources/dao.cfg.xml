@@ -5,7 +5,7 @@
   http://www.springframework.org/schema/beans/spring-beans.xsd
   http://www.springframework.org/schema/context
   http://www.springframework.org/schema/context/spring-context.xsd">
-	<description>embeded neo4j config</description>
+	<description>neo4j config</description>
 
 	<context:annotation-config /> 
 	<!-- dynamic switch remote and emberd to test -->
@@ -13,27 +13,27 @@
 	<bean id="neo4jConfig" class="demo.neo4j.jcypher.config.Neo4jConfig"
 		init-method="initDbAccess">
 		<property name="dbType" value="REMOTE"></property>
+		<property name="dbPath" value="http://127.0.0.1:7474"></property>
+		<property name="dbName" value="uadb"></property>
 	</bean>
 	<!-- emberded -->
 	<!-- <bean id="neo4jConfig" class="demo.neo4j.jcypher.config.Neo4jConfig" 
 		init-method="initDbAccess"> -->
 	<!-- <property name="dbType" value="EMBEDDED"></property> -->
 	<!-- <property name="dbPath" value="F://Dev//neo4j//data//graph.db"></property> -->
-	<!-- </bean> -->
+	<!-- </bean> --> 
+	
+	 
 
-	<bean id="userConfig" class="demo.neo4j.jcypher.config.Neo4jConfig"
-		parent="neo4jConfig">
-		<property name="dbName" value="UserDB"></property>
-	</bean>
-	<bean id="populationConfig" class="demo.neo4j.jcypher.config.Neo4jConfig"
-		parent="neo4jConfig">
-		<property name="dbName" value="PopulationDB"></property>
-	</bean>
+	<bean id="addressNodeDao" class="demo.neo4j.jcypher.dao.impl.AddressNodeDaoImpl">
+		<property name="neo4jConfig" ref="neo4jConfig"></property>
+	</bean> 
 
 	<bean id="userDao" class="demo.neo4j.jcypher.dao.impl.UserDaoImpl">
-		<property name="neo4jConfig" ref="userConfig"></property>
+		<property name="neo4jConfig" ref="neo4jConfig"></property>
 	</bean>
+	
 	<bean id="populationDao" class="demo.neo4j.jcypher.dao.impl.PopulationDaoImpl">
-		<property name="neo4jConfig" ref="populationConfig"></property>
+		<property name="neo4jConfig" ref="neo4jConfig"></property>
 	</bean>
 </beans>

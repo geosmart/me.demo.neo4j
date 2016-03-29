@@ -9,5 +9,7 @@ import org.neo4j.graphdb.RelationshipType;
  * 
  */
 public enum UserRelationShipType implements RelationshipType {
-  KNOWS
+
+  knows
+
 }

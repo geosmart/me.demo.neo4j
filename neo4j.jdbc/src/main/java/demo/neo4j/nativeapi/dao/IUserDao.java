@@ -20,36 +20,26 @@ public interface IUserDao {
    * @param id
    * @return
    */
-  User findUser(String id);
+  List<User> findUserFriends(String id);
 
-
-  /**
-   * find user's relationship by userid
-   * 
-   * @see default set traverser depth 1
-   * @param id
-   * @return
-   */
-  List<User> findRelationUsers(String id);
-
-  void createRelationships();
 
   /**
    * save single List<User>
    * 
    * @param user
    */
-  void createUser(List<User> users);
+  void saveUser(List<User> users);
 
   /**
    * save single User
    * 
    * @param user
    */
-  void createUser(User user);
+  void saveUser(User user);
 
   /**
    * clear UserDB
    */
-  void clearDatabase();
+  void clearDataBase();
+
 }

@@ -5,7 +5,7 @@ JDK版本：`Java7`
 Neo4j版本：`2.3.2`
 
 ## SpringData for Neo4j Demo
-项目名称：`neo4j-demo-springdata`
+项目名称：`neo4j-demo-springdata`  
 1. 在领域实体POJO内以标注形式进行OGM映射（Relation、Index）；  
 2. DAO层可通过继承GraphRepository模版类，重用CRUD方法；  
 
@@ -25,5 +25,6 @@ Neo4j官方自带API，需手动进行事物管理，实现较为繁琐；
 
 ## Neo4j Spring JDBC Demo
 项目名称：`neo4j-demo-springjdbc`  
-比Java Cypher API使用更为便捷，可用于一些OGM框架不能处理的Crpher语句的场合  
+基于Neo4j-jdbc，JdbcTenplate使用更为轻便，可用于一些OGM框架不能处理的Cypher语句的场合  
+
 [-TODO-]

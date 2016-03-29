@@ -85,10 +85,4 @@ public class User {
 	this.friends = friends;
   }
 
-  public void setId(Long id) {
-	this.id = id;
-  }
-
-
-
 }
