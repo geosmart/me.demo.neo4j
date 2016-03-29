@@ -1,4 +1,4 @@
-SpringData for Neo4j Demo
+Neo4j Java NativeAPI Demo
 ---
 [tutorials-java-embedded](http://neo4j.com/docs/stable/tutorials-java-embedded.html)
 
@@ -39,4 +39,4 @@ use native api to operate graph crud.
 ``` 
 
 * user model screenshoot
-![userRelationship](bin/img/userRelationship.png)
+![userRelationship](bin/img/userRelationship.png)   
