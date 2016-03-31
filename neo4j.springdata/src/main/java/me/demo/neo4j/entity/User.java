@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.neo4j.graphdb.Direction;
-import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.annotation.RelatedTo;
@@ -14,13 +13,10 @@ import org.springframework.data.neo4j.annotation.RelatedTo;
  * User entity
  * 
  * @author geosmart
- *
+ * 
  */
 @NodeEntity
-public class User {
-
-  @GraphId
-  Long id;
+public class User extends AbstractGraphEntity {
 
   @Indexed
   private String login;
@@ -67,14 +63,6 @@ public class User {
 
   public void setLastLogin(Date lastLogin) {
 	this.lastLogin = lastLogin;
-  }
-
-  public long getId() {
-	return id;
-  }
-
-  public void setId(long id) {
-	this.id = id;
   }
 
   public Set<User> getFriends() {
