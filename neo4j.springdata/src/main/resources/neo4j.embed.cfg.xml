@@ -19,7 +19,7 @@
 	<neo4j:config storeDirectory="bin/db" base-package="me.demo.neo4j.entity" />
 
 	<!-- Package w/ automagic repositories -->
-	<neo4j:repositories base-package="me.demo.neo4j.dao" />
+	<neo4j:repositories base-package="demo.neo4j.nativeapi.dao" />
 
 	<context:annotation-config />  
 </beans>

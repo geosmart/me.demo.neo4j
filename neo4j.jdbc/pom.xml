@@ -20,7 +20,7 @@
 		<!-- db -->
 		<spring.version>4.1.9.RELEASE</spring.version>
 		<spring-data-neo4j.version>3.4.2.RELEASE</spring-data-neo4j.version>
-		<neo4j.version>2.3.2</neo4j.version>
+		<neo4j.version>2.3.3</neo4j.version>
 
 		<!-- test -->
 		<junit.version>4.11</junit.version>
@@ -30,20 +30,16 @@
 	</properties>
 
 	<repositories>  
+        <repository>
+            <id>Neo4j releases</id>
+            <url>https://m2.neo4j.org/content/repositories/releases</url> 
+        </repository> 
 		<repository>
 			<id>sonatype-nexus-staging</id>
 			<name>Nexus Release Repository</name>
 			<url>http://repo1.maven.org/maven2/</url>
 			<layout>default</layout>
 		</repository>
-		<repository>
-			<id>central maven repository</id>
-			<url>http://central.maven.org/maven2/</url>
-		</repository>
-        <repository>
-            <id>Neo4j releases</id>
-            <url>https://m2.neo4j.org/content/repositories/releases</url> 
-        </repository> 
 	</repositories>
 	<dependencies>
 		<!-- spring -->
@@ -79,11 +75,9 @@
 		</dependency>
 		<dependency>
 			<groupId>org.neo4j</groupId>
-			<artifactId>neo4j-io</artifactId>
-			<version>${neo4j.version}</version>
+			<artifactId>neo4j-io</artifactId> 
 			<type>test-jar</type>
-		</dependency>
-
+		</dependency> 
 
 		<!--test -->
 		<dependency>

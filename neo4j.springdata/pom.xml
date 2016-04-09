@@ -19,8 +19,8 @@
 
 		<!-- db -->
 		<spring.version>4.1.9.RELEASE</spring.version>
-		<spring-data-neo4j.version>3.4.4.RELEASE</spring-data-neo4j.version>
-		<neo4j.version>2.3.2</neo4j.version>
+		<spring-data-neo4j.version>3.1.2.RELEASE</spring-data-neo4j.version>
+		<neo4j.version>2.3.3</neo4j.version>
 
 		<!-- encode -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

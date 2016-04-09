@@ -42,7 +42,6 @@ public class TestCypherAPI {
 	graphDb = dbFactory.newEmbeddedDatabase(new File(graphDbPath));
   }
 
-
   @Test
   public void initUsers() {
 	try (Transaction tx = graphDb.beginTx()) {

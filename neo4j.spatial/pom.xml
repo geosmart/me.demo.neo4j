@@ -18,9 +18,13 @@
 		<jdk.version>1.7</jdk.version>
 
 		<!-- db -->
-		<spring.version>4.1.9.RELEASE</spring.version>
+		<spring.version>3.1.2.RELEASE</spring.version>
 		<spring-data-neo4j.version>3.4.2.RELEASE</spring-data-neo4j.version>
-		<neo4j.version>2.3.2</neo4j.version>
+		<neo4j.version>2.3.3</neo4j.version>
+
+		<!-- common -->
+		<commons-lang3.version>3.1</commons-lang3.version>
+		<commons-io.version>2.4</commons-io.version>
 
 		<!-- test -->
 		<junit.version>4.11</junit.version>
@@ -33,6 +37,10 @@
 
 	<repositories>
 		<repository>
+			<id>central maven repository</id>
+			<url>http://central.maven.org/maven2/</url>
+		</repository>
+		<repository>
 			<id>neo4j-contrib-releases</id>
 			<url>https://raw.github.com/neo4j-contrib/m2/master/releases</url>
 			<releases>
@@ -42,10 +50,6 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-		<repository>
-			<id>central maven repository</id>
-			<url>http://central.maven.org/maven2/</url>
-		</repository>
 	</repositories>
 
 	<dependencies>
@@ -53,27 +57,55 @@
 		<dependency>
 			<groupId>org.neo4j</groupId>
 			<artifactId>neo4j</artifactId>
-		</dependency> 
+		</dependency>
+
 		<dependency>
 			<groupId>org.neo4j.app</groupId>
-			<artifactId>neo4j-server</artifactId>
+			<artifactId>neo4j-server-enterprise</artifactId>
 			<version>${neo4j.version}</version>
-			<classifier>static-web</classifier>
 		</dependency>
 		
+		<dependency>
+	<groupId>org.neo4j</groupId>
+	<artifactId>neo4j-udc</artifactId>
+	<version>2.3.3</version>
+</dependency>
+
+
+		<dependency>
+			<groupId>org.neo4j</groupId>
+			<artifactId>neo4j-kernel</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.neo4j</groupId>
+			<artifactId>neo4j-io</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- neo4j spatial -->
 		<dependency>
 			<groupId>org.neo4j</groupId>
 			<artifactId>neo4j-spatial</artifactId>
-			<version>0.15-neo4j-2.3.1</version>
+			<version>0.15-neo4j-2.3.3</version>
 		</dependency>
-		
+
 		<!-- log -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 		</dependency>
-		
+
+		<!-- common -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
+		</dependency>
+
 		<!--test -->
 		<dependency>
 			<groupId>junit</groupId>
