@@ -35,15 +35,15 @@ import demo.neo4j.nativeapi.util.JsonUtil;
 @Repository
 public class UserDaoImpl implements IUserDao {
   @Autowired
-  GraphDatabaseService graphDatabaseService;
+  GraphDatabaseService graphDBService;
 
   Label label = DynamicLabel.label(User.class.getSimpleName());
 
   @Override
   public User findUser(String id) {
 	User user = null;
-	try (Transaction tx = graphDatabaseService.beginTx()) {
-	  Node node = graphDatabaseService.findNode(label, "id", id);
+	try (Transaction tx = graphDBService.beginTx()) {
+	  Node node = graphDBService.findNode(label, "id", id);
 	  Map<String, Object> properties = node.getAllProperties();
 	  user = JsonUtil.ConvertMap2POJO(properties, new TypeReference<User>() {});
 	  tx.success();
@@ -54,9 +54,9 @@ public class UserDaoImpl implements IUserDao {
   @SuppressWarnings("rawtypes")
   @Override
   public void createUser(List<User> users) {
-	try (Transaction tx = graphDatabaseService.beginTx()) {
+	try (Transaction tx = graphDBService.beginTx()) {
 	  for (User user : users) {
-		Node node = graphDatabaseService.createNode(label);
+		Node node = graphDBService.createNode(label);
 		Map<String, Object> map = JsonUtil.convertEntityObj2MapWithoutNull(user, false);
 		for (String prop : map.keySet()) {
 		  Object value = map.get(prop);
@@ -79,8 +79,8 @@ public class UserDaoImpl implements IUserDao {
 
   @Override
   public void createUser(User user) {
-	try (Transaction tx = graphDatabaseService.beginTx()) {
-	  Node node = graphDatabaseService.createNode(label);
+	try (Transaction tx = graphDBService.beginTx()) {
+	  Node node = graphDBService.createNode(label);
 	  Map<String, Object> map = JsonUtil.convertEntityObj2Map(user, false);
 	  for (String prop : map.keySet()) {
 		node.setProperty(prop, map.get(prop));
@@ -92,14 +92,14 @@ public class UserDaoImpl implements IUserDao {
   @Override
   public void createRelationships() {
 	// createRelationships by friendId
-	try (Transaction tx = graphDatabaseService.beginTx()) {
-	  ResourceIterator<Node> nodes = graphDatabaseService.findNodes(label);
+	try (Transaction tx = graphDBService.beginTx()) {
+	  ResourceIterator<Node> nodes = graphDBService.findNodes(label);
 	  while (nodes.hasNext()) {
 		Node node = nodes.next();
 		Object friendId = node.getProperty("friendId");
 		System.out.println(node.getProperty("id") + "  -  " + friendId);
 		if (friendId != null) {
-		  Node friendNode = graphDatabaseService.findNode(label, "id", friendId);
+		  Node friendNode = graphDBService.findNode(label, "id", friendId);
 		  Relationship relationship = node.createRelationshipTo(friendNode, UserRelationShipType.KNOWS);
 		  relationship.setProperty("info", "i know you");
 		}
@@ -111,10 +111,10 @@ public class UserDaoImpl implements IUserDao {
   @Override
   public List<User> findRelationUsers(String id) {
 	List<User> users = new ArrayList<User>();
-	try (Transaction tx = graphDatabaseService.beginTx()) {
-	  Node userNode = graphDatabaseService.findNode(label, "id", id);
+	try (Transaction tx = graphDBService.beginTx()) {
+	  Node userNode = graphDBService.findNode(label, "id", id);
 	  TraversalDescription td =
-		  graphDatabaseService.traversalDescription().breadthFirst().relationships(UserRelationShipType.KNOWS).evaluator(Evaluators.atDepth(1));
+		  graphDBService.traversalDescription().breadthFirst().relationships(UserRelationShipType.KNOWS).evaluator(Evaluators.atDepth(1));
 	  Traverser friendsTraverser = td.traverse(userNode);
 
 	  printTraverserPath(userNode, friendsTraverser);
@@ -148,8 +148,8 @@ public class UserDaoImpl implements IUserDao {
 
   @Override
   public void clearDatabase() {
-	try (Transaction tx = graphDatabaseService.beginTx()) {
-	  ResourceIterator<Node> nodes = graphDatabaseService.findNodes(label);
+	try (Transaction tx = graphDBService.beginTx()) {
+	  ResourceIterator<Node> nodes = graphDBService.findNodes(label);
 	  while (nodes.hasNext()) {
 		Node node = nodes.next();
 		Iterable<Relationship> relationships = node.getRelationships();
@@ -163,11 +163,11 @@ public class UserDaoImpl implements IUserDao {
   }
 
   public GraphDatabaseService getGraphDb() {
-	return graphDatabaseService;
+	return graphDBService;
   }
 
   public void setGraphDb(GraphDatabaseService graphDb) {
-	this.graphDatabaseService = graphDb;
+	this.graphDBService = graphDb;
   }
 
 

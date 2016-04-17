@@ -15,7 +15,7 @@
 	<description>rest neo4j config</description>
 
 	<!-- REST Connection to Neo4j server -->
-	<bean id="graphDatabaseService"
+	<bean id="graphDBService"
 		class="org.springframework.data.neo4j.rest.SpringRestGraphDatabase">
 		<constructor-arg index="0"
 			value="http://localhost:7474/db/data/" />
@@ -23,7 +23,7 @@
 		<!-- <constructor-arg index="2" value="1" /> -->
 	</bean>
 
-	<neo4j:config graphDatabaseService="graphDatabaseService"
+	<neo4j:config graphDatabaseService="graphDBService"
 		base-package="me.demo.neo4j.entity" />
 
 	<!-- Package w/ automagic repositories -->

@@ -22,6 +22,6 @@
 		<constructor-arg ref="config" />
 	</bean>
 
-	<bean id="graphDatabaseService" factory-bean="graphDbBuilderFinal"
+	<bean id="graphDBService" factory-bean="graphDbBuilderFinal"
 		factory-method="newGraphDatabase" destroy-method="shutdown" />
 </beans>
