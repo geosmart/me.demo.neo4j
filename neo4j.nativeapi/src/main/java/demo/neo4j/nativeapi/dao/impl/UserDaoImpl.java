@@ -19,8 +19,6 @@ import org.neo4j.graphdb.traversal.Traverser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import demo.neo4j.nativeapi.dao.IUserDao;
 import demo.neo4j.nativeapi.domain.User;
 import demo.neo4j.nativeapi.domain.UserRelationShipType;
@@ -45,7 +43,7 @@ public class UserDaoImpl implements IUserDao {
 	try (Transaction tx = graphDBService.beginTx()) {
 	  Node node = graphDBService.findNode(label, "id", id);
 	  Map<String, Object> properties = node.getAllProperties();
-	  user = JsonUtil.ConvertMap2POJO(properties, new TypeReference<User>() {});
+	  user = JsonUtil.ConvertMap2POJO(properties, User.class);
 	  tx.success();
 	}
 	return user;
@@ -123,7 +121,7 @@ public class UserDaoImpl implements IUserDao {
 	  while (nodes.hasNext()) {
 		Node node = nodes.next();
 		Map<String, Object> properties = node.getAllProperties();
-		User user = JsonUtil.ConvertMap2POJO(properties, new TypeReference<User>() {});
+		User user = JsonUtil.ConvertMap2POJO(properties, User.class);
 		users.add(user);
 	  }
 	  tx.success();

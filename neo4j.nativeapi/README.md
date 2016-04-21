@@ -5,7 +5,7 @@ Neo4j Java NativeAPI Demo
 * dao
 use native api to operate graph crud.  
 [-]  use AOP to handle transaction  
-[-]  remote spring onfig
+[-]  remote spring config
 
 * neo4j.db.embed.cfg.xml
 ``` xml

@@ -116,12 +116,47 @@ public class JsonUtil {
   }
 
   /**
+   * 将Map转换成指定POJO
+   * 
+   * @param map
+   * @param claz
+   * @param isWithNull
+   * @param isUserAnnotations
+   * @return
+   */
+  public static <T> T ConvertMap2POJO(Map<String, Object> map, Class<T> claz) {
+	return ConvertMap2POJO(map, claz, true, false);
+  }
+
+  /**
+   * 将Map转换成指定POJO
+   * 
+   * @param map
+   * @param claz
+   * @param isWithNull
+   * @param isUserAnnotations
+   * @return
+   */
+  public static <T> T ConvertMap2POJO(Map<String, Object> map, Class<T> claz, boolean isWithNull, boolean isUserAnnotations) {
+	ObjectMapper objectMapper = null;
+	if (isWithNull) {
+	  objectMapper = JsonUtil.getObjectMapperWithNull();
+	} else {
+	  objectMapper = JsonUtil.getObjectMapper();
+	}
+	// 禁用注释，如jsonIgnore
+	objectMapper.configure(MapperFeature.USE_ANNOTATIONS, isUserAnnotations);
+	return (T) objectMapper.convertValue(map, claz);
+  }
+
+  /**
    * 将MapList转换成指定POJOList
    * 
    * @param mapList
    * @param typeRef 类型
    * @return
    */
+  @Deprecated
   public static <T> List<T> ConvertMapList2POJOList(List<Map<String, Object>> mapList, TypeReference<T> typeRef) {
 	List<T> result = new ArrayList<T>();
 	try {

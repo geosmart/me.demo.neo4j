@@ -88,6 +88,23 @@ public class TestCypherAPI {
   }
 
   @Test
+  public void test_findAddressNodes() {
+	try (Transaction tx = graphDb.beginTx()) {
+	  ExecutionEngine engine = new ExecutionEngine(graphDb, NullLogProvider.getInstance());
+
+	  long start = System.currentTimeMillis();
+	  ExecutionResult result = engine.execute("MATCH (root{ type:'admin' })-->(user) RETURN user");
+
+	  System.out.println(result.dumpToString());
+	  System.out.println(result.queryStatistics().toString());
+
+	  long total = System.currentTimeMillis() - start;
+	  System.out.println("spendMillis:" + total);
+	  tx.success();
+	}
+  }
+
+  @Test
   public void clearDataBase() {
 	try (Transaction tx = graphDb.beginTx()) {
 	  ResourceIterable<Node> nodes = GlobalGraphOperations.at(graphDb).getAllNodes();
